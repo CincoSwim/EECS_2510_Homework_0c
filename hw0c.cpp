@@ -3,9 +3,56 @@
 #include <string>
 using namespace std;
 
-void countDownRuns();
-void countUpRuns();
+int countDownRuns(int* arrayPtr, int arrayCt){
+    bool isGreaterOrEqual = false;
+    int runCt = 0;
+    int i = 0;
 
+    while (i < arrayCt){
+        if (arrayPtr[i]>= arrayPtr[i+1] & isGreaterOrEqual == false){
+            i++;
+            runCt++;
+            isGreaterOrEqual = true;
+        }
+        else if (arrayPtr[i]>= arrayPtr[i+1] & isGreaterOrEqual == true){
+            i++;
+            isGreaterOrEqual = true;
+        }
+        else if (arrayPtr[i]< arrayPtr[i+1]){
+            i++;
+            isGreaterOrEqual = false;
+        }
+
+    }
+
+
+    return runCt;
+}
+int countUpRuns(int* arrayPtr, int arrayCt){
+    bool isGreaterOrEqual = false;
+    int runCt = 0;
+    int i = 0;
+
+    while (i < arrayCt){
+        if (arrayPtr[i]<= arrayPtr[i+1] & isGreaterOrEqual == false){
+            i++;
+            runCt++;
+            isGreaterOrEqual = true;
+        }
+        else if (arrayPtr[i]<= arrayPtr[i+1] & isGreaterOrEqual == true){
+            i++;
+            isGreaterOrEqual = true;
+        }
+        else if (arrayPtr[i]> arrayPtr[i+1]){
+            i++;
+            isGreaterOrEqual = false;
+        }
+
+    }
+
+
+    return runCt;
+}
 int* returnsArrayPointer(){
     static int readArray[100], rdNum;
     string line;
@@ -19,7 +66,6 @@ int* returnsArrayPointer(){
         while ( getline(numFile, line)){
            rdNum = stoi(line);
            readArray[i] = rdNum;
-           cout <<"Number Read: " << line << endl;
            i++;
            }
     }
@@ -42,14 +88,13 @@ int main() {
     }
 
 
-    cout << "Number of array elements: " << arrayCt <<endl;
-    upRunCt = (arrayPoint, arrayCt);
+    cout << "Elements loaded: " << arrayCt <<endl;
+    upRunCt = countUpRuns(arrayPoint, arrayCt);
+    dwnRunCt = countDownRuns(arrayPoint, arrayCt);
+    cout << "Up Runs Found: " << upRunCt <<endl;
+    cout << "Down Runs Found: " << dwnRunCt;
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 
-int countUpRuns(int* arrayPtr, int arrayCt){
-    bool isGreaterOrEqual;
 
-    return 0;
-}
